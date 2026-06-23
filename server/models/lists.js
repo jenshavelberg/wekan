@@ -392,6 +392,12 @@ Meteor.methods({
       throw new Meteor.Error('permission-denied', 'User does not have permission to modify this board');
     }
 
+    // #6422: refuse list reordering while the board layout is frozen (defense
+    // in depth — the client also disables the list drag).
+    if (board.freezeLayout) {
+      throw new Meteor.Error('board-layout-frozen', 'Board layout is frozen');
+    }
+
     const list = await ReactiveCache.getList(listId);
     if (!list) {
       throw new Meteor.Error('list-not-found', 'List not found');

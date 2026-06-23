@@ -11,6 +11,7 @@ import Lists from '/models/lists';
 import TableVisibilityModeSettings from '/models/tableVisibilityModeSettings';
 import { EscapeActions } from '/client/lib/escapeActions';
 import { Utils } from '/client/lib/utils';
+const { isLayoutDragDisabled } = require('/config/layoutFreeze');
 
 // SubsManager removed for Meteor 3 migration
 const { calculateIndex } = Utils;
@@ -568,11 +569,16 @@ Template.boardBody.onRendered(function () {
         $swimlanesDom.sortable('option', 'handle', '.swimlane-header');
       }
 
-      // Disable drag-dropping if the current user is not a board member
+      // Disable drag-dropping if the current user is not a board admin, or if
+      // the board layout is frozen (#6422). Reading freezeLayout here keeps the
+      // swimlane drag in sync the moment an admin toggles the lock.
       $swimlanesDom.sortable(
         'option',
         'disabled',
-        !ReactiveCache.getCurrentUser()?.isBoardAdmin(),
+        isLayoutDragDisabled(
+          !!ReactiveCache.getCurrentUser()?.isBoardAdmin(),
+          Utils.getCurrentBoard()?.freezeLayout,
+        ),
       );
     }
   });

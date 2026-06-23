@@ -817,6 +817,17 @@ Boards.attachSchema(
       optional: true,
       defaultValue: false,
     },
+    freezeLayout: {
+      /**
+       * #6422: when true, the board layout is frozen — swimlanes and lists
+       * (columns) can no longer be dragged/reordered, so admins stop moving
+       * them around by accident during normal work. Cards stay fully movable.
+       * Toggleable by board admins from the board settings popup.
+       */
+      type: Boolean,
+      optional: true,
+      defaultValue: false,
+    },
     allowsReceivedDateOnMinicard: {
       /**
        * Does the board allows received date on minicard?
@@ -2208,6 +2219,13 @@ Boards.helpers({
   async setAutoWidth(autoWidth) {
     return await Boards.updateAsync(this._id, {
       $set: { autoWidth: !!autoWidth },
+    });
+  },
+
+  async setFreezeLayout(freezeLayout) {
+    // #6422: lock/unlock swimlane + list reordering for the whole board.
+    return await Boards.updateAsync(this._id, {
+      $set: { freezeLayout: !!freezeLayout },
     });
   },
 

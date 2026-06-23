@@ -234,6 +234,12 @@ template(name="boardInfoOnMyBoardsPopup")
         span
           i.fa.fa-arrows-h
           | {{_ 'personal-list-width'}}
+    div.check-div
+      a.flex.js-field-freeze-layout(title="{{_ 'freeze-layout-description'}}" class="{{#if freezeLayout}}is-checked{{/if}}")
+        i.fa(class="{{#if freezeLayout}}fa-check{{else}}fa-square-o{{/if}}")
+        span
+          i.fa.fa-lock
+          | {{_ 'freeze-layout'}}
 
 template(name="boardCardSettingsPopup")
   form.board-card-settings

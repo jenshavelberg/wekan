@@ -7,6 +7,7 @@ import { Filter } from '/client/lib/filter';
 import { EscapeActions } from '/client/lib/escapeActions';
 import { Utils } from '/client/lib/utils';
 import { defaultSwimlaneIdForBoard } from '/client/components/lists/listAddHelpers';
+const { isLayoutDragDisabled } = require('/config/layoutFreeze');
 const { calculateIndex } = Utils;
 
 function saveSorting(ui) {
@@ -14,6 +15,11 @@ function saveSorting(ui) {
   // persist a list reorder, even if a sortable was left enabled. Anonymous
   // users on public boards fall through to the localStorage path below.
   if (Meteor.userId() && !Utils.canModifyBoard()) {
+    return;
+  }
+  // #6422 (defense in depth): never persist a list reorder while the board
+  // layout is frozen, even if a sortable was somehow left enabled.
+  if (Utils.getCurrentBoard()?.freezeLayout) {
     return;
   }
   // To attribute the new index number, we need to get the DOM element
@@ -440,7 +446,11 @@ Template.swimlane.onRendered(function () {
         placeholder: 'list placeholder',
         distance: 7,
         handle: handleSelector,
-        disabled: !Utils.canModifyBoard(),
+        // #6422: disabled when the user lacks write access OR the layout is frozen.
+        disabled: isLayoutDragDisabled(
+          Utils.canModifyBoard(),
+          Utils.getCurrentBoard()?.freezeLayout,
+        ),
         dropOnEmpty: true,
         start(evt, ui) {
           ui.helper.css('z-index', 1000);
@@ -462,6 +472,15 @@ Template.swimlane.onRendered(function () {
         if ($parent.data('uiSortable') || $parent.data('sortable')) {
           try {
             $parent.sortable('option', 'handle', newHandle);
+            // #6422: keep list drag in sync when freeze / permission changes.
+            $parent.sortable(
+              'option',
+              'disabled',
+              isLayoutDragDisabled(
+                Utils.canModifyBoard(),
+                Utils.getCurrentBoard()?.freezeLayout,
+              ),
+            );
           } catch (e) {}
         }
       });
@@ -927,7 +946,11 @@ Template.listsGroup.onRendered(function () {
         placeholder: 'list placeholder',
         distance: 7,
         handle: handleSelector,
-        disabled: !Utils.canModifyBoard(),
+        // #6422: disabled when the user lacks write access OR the layout is frozen.
+        disabled: isLayoutDragDisabled(
+          Utils.canModifyBoard(),
+          Utils.getCurrentBoard()?.freezeLayout,
+        ),
         dropOnEmpty: true,
         start(evt, ui) {
           ui.helper.css('z-index', 1000);
@@ -949,6 +972,15 @@ Template.listsGroup.onRendered(function () {
         if ($parent.data('uiSortable') || $parent.data('sortable')) {
           try {
             $parent.sortable('option', 'handle', newHandle);
+            // #6422: keep list drag in sync when freeze / permission changes.
+            $parent.sortable(
+              'option',
+              'disabled',
+              isLayoutDragDisabled(
+                Utils.canModifyBoard(),
+                Utils.getCurrentBoard()?.freezeLayout,
+              ),
+            );
           } catch (e) {}
         }
       });
