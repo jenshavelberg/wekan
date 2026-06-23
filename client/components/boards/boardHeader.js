@@ -212,6 +212,14 @@ Template.boardHeaderBar.events({
       currentBoard.setShowDependencies(!currentBoard.showDependencies);
     }
   },
+  'click .js-toggle-freeze-layout'() {
+    // #6422: freeze/unfreeze the board layout (swimlane/list add, rename,
+    // reorder). Cards stay editable.
+    const currentBoard = Utils.getCurrentBoard();
+    if (currentBoard) {
+      currentBoard.setFreezeLayout(!currentBoard.freezeLayout);
+    }
+  },
   'click .js-multiselection-activate'() {
     const currentCard = Utils.getCurrentCardId();
     MultiSelection.activate();

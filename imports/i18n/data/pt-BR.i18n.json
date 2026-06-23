@@ -126,6 +126,7 @@
   "personal-list-width": "Larguras de listas pessoais",
   "personal-list-width-description": "Quando ativada, cada usuário mantém a largura de sua própria lista. Quando desativada, a largura da lista é compartilhada com todos no quadro.",
   "freeze-layout": "Freeze layout",
+  "unfreeze-layout": "Unfreeze layout",
   "freeze-layout-description": "When on, swimlanes and lists cannot be moved or reordered, so the layout is not changed by accident. Cards can still be moved.",
   "keyboard-shortcuts-enabled": "Atalhos de teclado ativado. Clique para desativar.",
   "keyboard-shortcuts-disabled": "Atalhos de teclado desabilitados. Clique para habilitar.",

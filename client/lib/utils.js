@@ -330,6 +330,12 @@ export const Utils = {
     );
     return ret;
   },
+  /** #6422: true when the current board's layout is frozen — swimlane/list
+   * structural editing (add, rename, reorder, action menus) is locked while
+   * cards stay editable. */
+  layoutFrozen() {
+    return !!Utils.getCurrentBoard()?.freezeLayout;
+  },
   reload() {
     // we move all window.location.reload calls into this function
     // so we can disable it when running tests.

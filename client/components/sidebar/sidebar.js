@@ -1129,28 +1129,9 @@ Template.boardInfoOnMyBoardsPopup.helpers({
     const tpl = Template.instance();
     return tpl.currentBoard.allowsPersonalListWidth;
   },
-  freezeLayout() {
-    const tpl = Template.instance();
-    return tpl.currentBoard.freezeLayout;
-  },
 });
 
 Template.boardInfoOnMyBoardsPopup.events({
-  'click .js-field-freeze-layout'(evt, tpl) {
-    // #6422: toggle whether the board layout is frozen, so swimlanes and lists
-    // cannot be dragged/reordered by accident. Cards stay movable.
-    evt.preventDefault();
-    tpl.currentBoard.freezeLayout = !tpl.currentBoard.freezeLayout;
-    tpl.currentBoard.setFreezeLayout(tpl.currentBoard.freezeLayout);
-    $(`.js-field-freeze-layout ${MCB}`).toggleClass(
-      CKCLS,
-      tpl.currentBoard.freezeLayout,
-    );
-    $('.js-field-freeze-layout').toggleClass(
-      CKCLS,
-      tpl.currentBoard.freezeLayout,
-    );
-  },
   'click .js-field-has-personal-list-width'(evt, tpl) {
     // #6409: toggle whether list widths are shared (board default, everyone
     // sees the same) or personal (per user).

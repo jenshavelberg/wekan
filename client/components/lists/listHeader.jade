@@ -21,7 +21,7 @@ template(name="listHeader")
       if isMiniScreen
         h2.list-header-name(
           title="{{ displayDate modifiedAt 'LLL' }}"
-          class="{{#if currentUser.isBoardMember}}{{#unless currentUser.isCommentOnly}}{{#unless currentUser.isWorker}}js-open-inlined-form is-editable{{/unless}}{{/unless}}{{/if}}")
+          class="{{#if currentUser.isBoardMember}}{{#unless currentUser.isCommentOnly}}{{#unless currentUser.isWorker}}{{#unless layoutFrozen}}js-open-inlined-form is-editable{{/unless}}{{/unless}}{{/unless}}{{/if}}")
           +viewer
             = title
           if wipLimit.enabled
@@ -42,7 +42,7 @@ template(name="listHeader")
         div(class="{{#if collapsed}}list-rotated{{/if}}")
           h2.list-header-name(
             title="{{ displayDate modifiedAt 'LLL' }}"
-            class="{{#unless collapsed}}{{#if currentUser.isBoardMember}}{{#unless currentUser.isCommentOnly}}{{#unless currentUser.isWorker}}js-open-inlined-form is-editable{{/unless}}{{/unless}}{{/if}}{{/unless}}")
+            class="{{#unless collapsed}}{{#if currentUser.isBoardMember}}{{#unless currentUser.isCommentOnly}}{{#unless currentUser.isWorker}}{{#unless layoutFrozen}}js-open-inlined-form is-editable{{/unless}}{{/unless}}{{/unless}}{{/if}}{{/unless}}")
             +viewer
               = title
             if wipLimit.enabled
@@ -66,8 +66,9 @@ template(name="listHeader")
                   if canSeeAddCard
                     a.js-add-card.list-header-plus-top(title="{{_ 'add-card-to-top-of-list'}}")
                       i.fa.fa-plus
-                  a.js-open-list-menu(title="{{_ 'listActionPopup-title'}}")
-                    i.fa.fa-bars
+                  unless layoutFrozen
+                    a.js-open-list-menu(title="{{_ 'listActionPopup-title'}}")
+                      i.fa.fa-bars
         else
           a.list-header-menu-icon.js-select-list
             i.fa.fa-caret-right
@@ -98,8 +99,9 @@ template(name="listHeader")
                   if canSeeAddCard
                     a.js-add-card.list-header-plus-top(title="{{_ 'add-card-to-top-of-list'}}")
                       i.fa.fa-plus
-                  a.js-open-list-menu(title="{{_ 'listActionPopup-title'}}")
-                    i.fa.fa-bars
+                  unless layoutFrozen
+                    a.js-open-list-menu(title="{{_ 'listActionPopup-title'}}")
+                      i.fa.fa-bars
 
 template(name="editListTitleForm")
   .list-composer

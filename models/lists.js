@@ -408,6 +408,12 @@ Lists.helpers({
   },
 
   async rename(title) {
+    // #6422: layout frozen → list renaming is locked (defense in depth; the
+    // inline rename trigger is also hidden in the UI).
+    const board = await ReactiveCache.getBoard(this.boardId);
+    if (board?.freezeLayout) {
+      throw new Meteor.Error('board-layout-frozen', 'Board layout is frozen');
+    }
     // Basic client-side validation - server will handle full sanitization
     if (typeof title === 'string') {
       // Basic length check to prevent abuse

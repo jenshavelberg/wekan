@@ -147,6 +147,13 @@ template(name="boardHeaderBar")
           span {{#if currentBoard.showDependencies}}{{_ 'hide-dependencies'}}{{else}}{{_ 'show-dependencies'}}{{/if}}
 
         if canModifyBoard
+          a.board-header-btn.js-toggle-freeze-layout(
+              title="{{#if currentBoard.freezeLayout}}{{_ 'unfreeze-layout'}}{{else}}{{_ 'freeze-layout'}}{{/if}}"
+              class="{{#if currentBoard.freezeLayout}}emphasis{{/if}}")
+            i.fa(class="{{#if currentBoard.freezeLayout}}fa-lock{{else}}fa-unlock{{/if}}")
+            span {{#if currentBoard.freezeLayout}}{{_ 'unfreeze-layout'}}{{else}}{{_ 'freeze-layout'}}{{/if}}
+
+        if canModifyBoard
           a.board-header-btn.js-multiselection-activate(
               title="{{#if MultiSelection.isActive}}{{_ 'multi-selection-on'}}{{else}}{{_ 'multi-selection'}}{{/if}}"
               class="{{#if MultiSelection.isActive}}emphasis{{/if}}")

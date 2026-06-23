@@ -115,6 +115,10 @@ Blaze.registerHelper('canMoveCard', () => Utils.canMoveCard());
 
 Blaze.registerHelper('canModifyBoard', () => Utils.canModifyBoard());
 
+// #6422: whether the current board layout is frozen (locks swimlane/list
+// structural editing in templates via {{#unless layoutFrozen}}).
+Blaze.registerHelper('layoutFrozen', () => Utils.layoutFrozen());
+
 Blaze.registerHelper('add', (a, b) => a + b);
 
 Blaze.registerHelper('increment', (n) => (n || 0) + 1);

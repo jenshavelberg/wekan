@@ -126,6 +126,7 @@
   "personal-list-width": "Personal list widths",
   "personal-list-width-description": "When on, each user keeps their own list widths. When off, list widths are shared with everyone on the board.",
   "freeze-layout": "Freeze layout",
+  "unfreeze-layout": "Unfreeze layout",
   "freeze-layout-description": "When on, swimlanes and lists cannot be moved or reordered, so the layout is not changed by accident. Cards can still be moved.",
   "keyboard-shortcuts-enabled": "បានបើកផ្លូវកាត់ក្តារចុច។ ចុចដើម្បីបិទ។",
   "keyboard-shortcuts-disabled": "ផ្លូវកាត់ក្តារចុចត្រូវបានបិទ។ ចុច​ដើម្បី​បើក។",

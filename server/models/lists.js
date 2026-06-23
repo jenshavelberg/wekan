@@ -59,6 +59,11 @@ Meteor.methods({
       throw new Meteor.Error('board-not-found', 'Board not found');
     }
 
+    // #6422: refuse adding a list while the board layout is frozen.
+    if (board.freezeLayout) {
+      throw new Meteor.Error('board-layout-frozen', 'Board layout is frozen');
+    }
+
     try {
       if (Authentication?.checkBoardWriteAccess) {
         await Authentication.checkBoardWriteAccess(this.userId, boardId);

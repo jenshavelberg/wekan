@@ -126,6 +126,7 @@
   "personal-list-width": "Personal list widths",
   "personal-list-width-description": "When on, each user keeps their own list widths. When off, list widths are shared with everyone on the board.",
   "freeze-layout": "Freeze layout",
+  "unfreeze-layout": "Unfreeze layout",
   "freeze-layout-description": "When on, swimlanes and lists cannot be moved or reordered, so the layout is not changed by accident. Cards can still be moved.",
   "keyboard-shortcuts-enabled": "Tastaturkürzel sind aktiviert. Klicke, um sie zu deaktivieren.",
   "keyboard-shortcuts-disabled": "Tastaturkürzel sind deaktiviert. Klicke, um sie zu aktivieren.",

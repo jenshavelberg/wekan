@@ -10,7 +10,7 @@ template(name="swimlaneHeader")
 
 template(name="swimlaneFixedHeader")
   .swimlane-header(
-    class="{{#if currentUser.isBoardMember}}js-open-inlined-form is-editable{{/if}}")
+    class="{{#if currentUser.isBoardMember}}{{#unless layoutFrozen}}js-open-inlined-form is-editable{{/unless}}{{/if}}")
       if $eq title 'Card Templates'
         | {{_ 'card-templates-swimlane'}}
       else if $eq title 'List Templates'
@@ -33,10 +33,11 @@ template(name="swimlaneFixedHeader")
                   i.fa.fa-caret-right
                 else
                   i.fa.fa-caret-down
-              a.js-open-swimlane-menu(title="{{_ 'swimlaneActionPopup-title'}}")
-                i.fa.fa-bars
-              a.js-open-add-swimlane-menu.swimlane-header-plus-icon(title="{{_ 'add-swimlane'}}")
-                i.fa.fa-plus
+              unless layoutFrozen
+                a.js-open-swimlane-menu(title="{{_ 'swimlaneActionPopup-title'}}")
+                  i.fa.fa-bars
+                a.js-open-add-swimlane-menu.swimlane-header-plus-icon(title="{{_ 'add-swimlane'}}")
+                  i.fa.fa-plus
               if isTouchScreenOrShowDesktopDragHandles
                 unless isTouchScreen
                   a.swimlane-header-handle.handle.js-swimlane-header-handle
