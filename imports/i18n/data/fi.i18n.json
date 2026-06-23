@@ -125,6 +125,8 @@
   "list-width-personal-note": "Tämä leveys on vain sinua varten.",
   "personal-list-width": "Henkilökohtaiset listaleveydet",
   "personal-list-width-description": "Kun käytössä, jokaisella käyttäjällä on omat listaleveytensä. Kun pois käytöstä, listaleveydet ovat yhteisiä kaikille taulun jäsenille.",
+  "freeze-layout": "Freeze layout",
+  "freeze-layout-description": "When on, swimlanes and lists cannot be moved or reordered, so the layout is not changed by accident. Cards can still be moved.",
   "keyboard-shortcuts-enabled": "Pikanäppäimet käytössä. Klikkaa poistaaksesi käytöstä.",
   "keyboard-shortcuts-disabled": "Pikanäppäimet poistettu käytöstä. Klikkaa ottaaksesi käyttöön.",
   "setSwimlaneHeightPopup-title": "Aseta uimaradan korkeus",

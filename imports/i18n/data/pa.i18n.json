@@ -125,6 +125,8 @@
   "list-width-personal-note": "This width is only for you.",
   "personal-list-width": "Personal list widths",
   "personal-list-width-description": "When on, each user keeps their own list widths. When off, list widths are shared with everyone on the board.",
+  "freeze-layout": "Freeze layout",
+  "freeze-layout-description": "When on, swimlanes and lists cannot be moved or reordered, so the layout is not changed by accident. Cards can still be moved.",
   "keyboard-shortcuts-enabled": "ਕੀ-ਬੋਰਡ ਸ਼ਾਰਟਕੱਟ ਚਾਲੂ ਹਨ। ਅਯੋਗ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ।",
   "keyboard-shortcuts-disabled": "ਕੀਬੋਰਡ ਸ਼ਾਰਟਕੱਟ ਅਸਮਰੱਥ। ਯੋਗ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ।",
   "setSwimlaneHeightPopup-title": "ਤੈਰਾਕੀ ਦੀ ਉਚਾਈ ਸੈੱਟ ਕਰੋ",
